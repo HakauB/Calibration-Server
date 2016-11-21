@@ -1,0 +1,13 @@
+<form enctype="multipart/form-data"></form>
+
+<h1>Add Job</h1>
+
+<form action="{% url "contacts-new" %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+  </ul>
+  <input id="save_contact" type="submit" value="Save" />
+</form>
+
+<a href="{% url "contacts-list" %}">back to list</a>
