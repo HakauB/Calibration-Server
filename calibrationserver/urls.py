@@ -16,14 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import contacts.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login$', auth_views.login, name='login',),
+    url(r'^login/$', auth_views.login, name='login',),
     url(r'^logout/$', auth_views.logout, name='logout',),
     url(r'^$', contacts.views.ListContactView.as_view(), name='contacts-list',),
     url(r'^new$', contacts.views.CreateContactView.as_view(), name='contacts-new',),
-
+    url(r'^edit/(?P<pk>\d+)/$', contacts.views.UpdateContactView.as_view(), name='contacts-edit',),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
