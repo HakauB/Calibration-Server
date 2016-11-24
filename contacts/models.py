@@ -10,16 +10,13 @@ fs = FileSystemStorage(location='jobs/processes')
 
 class Contact(models.Model):
 
-    cal_file = models.FileField(null = True, blank = True, upload_to = 'processing', storage = fs)
+    id = models.AutoField(primary_key=True)
 
-    #email = models.EmailField()
+    cal_file = models.FileField(null = True, blank = True, upload_to = 'processing', storage = fs)
 
     calibration = models.CharField(
         max_length = 255,
     )
-
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    id = models.AutoField(primary_key=True)
 
     owner = models.ForeignKey(User, default = 'Default_user')
 
