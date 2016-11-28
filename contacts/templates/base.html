@@ -1,5 +1,5 @@
 {% load staticfiles %}
-<html>
+<!--<html>
   <head>
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
           rel="stylesheet" media="screen">
@@ -9,9 +9,10 @@
    <div>
       {{ user }}
       {% if user.is_anonymous %}
-      <a href="{% url 'login' %}">login</a>
+      <a href="{% url 'auth_login' %}">Login</a>
+      <a href="{% url 'registration_register' %}">Register</a>
       {% else %}
-      <a href="{% url 'logout' %}">logout</a>
+      <a href="{% url 'auth_logout' %}">logout</a>
       {% endif %}
     </div>
     {% block content %}
@@ -19,4 +20,454 @@
 
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   </body>
+</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Data Mining : University of Waikato</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="https://www.waikato.ac.nz/favicon.ico" />
+<link rel="license" href="http://www.waikato.ac.nz/copyright.shtml" />
+   <link rel='stylesheet' href='https://www.waikato.ac.nz/css/screen.r2.7.css' media='screen, projection' />
+
+
+     <link rel="stylesheet" type="text/css" href="http://cms.its.waikato.ac.nz/_designs/responsivedesign/responsive/stnd/data-mining/data-mining.css" media="all" />
+
+<!--[if IE]>
+   <link rel="stylesheet" href="https://www.waikato.ac.nz/css/ie.r1.css" media="screen, projection" />
+<![endif]-->
+<link rel="stylesheet" href="https://www.waikato.ac.nz/css/print.r2.4.css" media="print" />
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+ <script src='https://www.waikato.ac.nz/include/js/html5shiv.r0.js'></script>
+ <script src='https://www.waikato.ac.nz/include/js/respond.min.r0.js'></script>
+ <link href="https://www.waikato.ac.nz/include/js/respond/respond-proxy.html" id='respond-proxy' rel='respond-proxy' />
+ <link href="/_media/respond.js/respond.proxy.gif" id='respond-redirect' rel='respond-redirect' />
+ <script src="/_media/respond.js/respond.proxy.js"></script>
+<![endif]-->
+
+
+
+
+
+
+
+
+<script src='https://www.waikato.ac.nz/include/js/jquery.r0.js'></script>
+<script src='https://www.waikato.ac.nz/include/js/bootstrap.min.r1.js'></script>
+
+
+
+<!--
+ Running Squiz Matrix
+ Developed by Squiz - http://www.squiz.net
+ Squiz, Squiz Matrix, MySource, MySource Matrix and Squiz.net are registered Trademarks of Squiz Pty Ltd
+ Page generated: 28 November 2016 20:00:42
+-->
+
+
+</head>
+<body>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MHC9XR"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MHC9XR');</script>
+<!-- End Google Tag Manager --><header>
+ <div id="headerContent" class='container'>
+   <div class='row'>
+   <div id="crest" class="col-xs-12 col-sm-5 col-md-4 col-lg-3"><a href='http://www.waikato.ac.nz/'><img src='https://www.waikato.ac.nz/images/TemplateImages/coat-of-arms.png' alt='The University of Waikato - Te Whare Wānanga o Waikato' class='noprint'><img src='https://www.waikato.ac.nz/images/coa.gif' alt='' class='printerOnly'></a></div>
+   <div id='siteName' class="col-xs-12 col-sm-4 col-md-5 col-lg-7">
+     <img src="http://www.data-mining.co.nz/__data/assets/image/0016/220039/datamining.png" width="300" height="80" alt="" title="datamining" />      <span class='siteName'>Data Mining <span></span></span>
+   </div>
+   <div id="searchForm" class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+     <form method='GET' name='searchForm' action='https://search.waikato.ac.nz/search?'>
+       <input type='hidden' name='site' value='default_collection'>
+       <input type='hidden' name='client' value='waikato'>
+       <input type='hidden' name='output' value='xml_no_dtd'>
+       <input type='hidden' name='proxystylesheet' value='waikato'>
+       <input type='hidden' name='sitesearch' value=''>
+       <input type="text" maxlength="100" id="search" name="q" placeholder="Search" autocomplete="off" aria-label="Search">
+     </form>
+   </div>
+   <!-- /searchForm -->
+   </div>
+ </div>
+ <!-- /headerContent -->
+</header>
+<!--googleoff: snippet-->
+<nav>
+ <div class='container'><div class='row'>
+ <div id='login'> <img src="https://www.waikato.ac.nz/images/template/login.gif" alt="" style="vertical-align:middle;"> <a href="http://www.waikato.ac.nz/cgi-bin/landing/index.cgi">Staff Home</a> |
+       - <a href="https://cookie.waikato.ac.nz/cgi-bin/WCLogout?referrer=http://www.data-mining.co.nz">Logout</a> </div>
+
+<div class="toggle-nav js-toggle-nav">Menu</div>
+ <div id='globalNav'> <!--<span id='gn-expand'>Menu</span>-->
+
+   <ul class="primary-nav js-primary-nav">
+ <li><a class='home' href="http://www.waikato.ac.nz">Home</a></li>
+ <li><a href="http://www.waikato.ac.nz/about/">About</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/about/">Section Overview</a></li>
+   <li><a href="http://www.waikato.ac.nz/about/welcome.shtml">Welcome to Waikato</a></li>
+   <li><a href="http://www.waikato.ac.nz/vc-office/">Vice-Chancellor's Office</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/alumni.shtml">Alumni</a></li>
+   <li><a href="http://www.waikato.ac.nz/foundation/">Foundation</a></li>
+   <li><a href="http://www.waikato.ac.nz/about/schools.shtml">Faculties/School of Studies</a></li>
+   <li><a href="http://www.waikato.ac.nz/hrm/vacancies/current.shtml">Current Vacancies</a></li>
+   <li class='section-start'><a href="http://www.waikato.ac.nz/about/coa.shtml">Coat of Arms</a></li>
+   <li class='section'><a href="http://www.waikato.ac.nz/landing/staff.shtml">Current Staff Login</a></li>
+ </ul>
+ </li>
+ <li><a href="http://www.waikato.ac.nz/study/">Study at Waikato</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/study/">Section Overview</a></li>
+   <li><a href="http://papers.waikato.ac.nz/">Papers</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/subjects/">Subjects</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/qualifications/">Qualifications</a></li>
+   <li class='section-start'><a href="http://www.waikato.ac.nz/study/qualifications/pathways.shtml">Pathways Programmes</a></li>
+   <li class='section'><a href="http://www.waikato.ac.nz/study/postgrad/">Postgraduate Studies</a></li>
+   <li class='section-end'><a href="http://timetable.waikato.ac.nz/">Class Timetable</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/enrol/">Apply to Enrol</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/international/apply/how-to-apply.shtml">International Application</a></li>
+   <li><a href="http://www.waikato.ac.nz/scholarships/search">Scholarships</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/dates.shtml">Important Dates</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/contact.shtml">Study Advice</a></li>
+   <li><a href="http://www.waikato.ac.nz/cme/student-recruitment/for-career-advisers">Information for Careers Advisers</a></li>
+ </ul>
+ </li>
+ <li><a href="http://www.waikato.ac.nz/students/">Student Experience</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/students/">Section Overview</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/future-students.shtml">Future Students</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/new-students.shtml">New Students</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/international/">International Students</a></li>
+               <li><a href="http://www.waikato.ac.nz/students/australia.shtml">Australian Students</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/maori.shtml">Māori at Waikato</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/pasifika.shtml">Pasifika at Waikato</a></li>
+   <li class='section-start'><a href="http://www.waikato.ac.nz/students/choose-waikato/hamilton.shtml">Hamilton: Student City</a></li>
+   <li class='section'><a href="http://uwt.waikato.ac.nz/">Tauranga</a></li>
+   <li class='section-end'><a href="http://www.waikato.ac.nz/students/accommodation/">Accommodation</a></li>
+   <li><a href="http://www.waikato.ac.nz/students/student-centre.shtml">Student Centre</a></li>
+   <li><a href="http://www.waikato.ac.nz/library/">Library</a></li>
+   <li><a href="http://www.waikato.ac.nz/landing/student.shtml">Current Student Login</a></li>
+ </ul>
+ </li>
+ <li><a href="http://www.waikato.ac.nz/research/">Research &amp; Expertise</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/research/">Section Overview</a></li>
+   <li><a href="http://www.waikato.ac.nz/research-enterprise">Research Support</a></li>
+   <li><a href="http://www.waikato.ac.nz/staff-profiles/">Find Expertise</a></li>
+   <li><a href="http://www.waikato.ac.nz/research/publications.shtml">Publications Databases</a></li>
+   <li><a href="http://www.waikato.ac.nz/research/outputs/sustainability.shtml">Showcase Projects</a></li>
+   <li class='section-start'><a href="http://www.waikato.ac.nz/research-enterprise/our-people/contact-us">Contact Research Support</a></li>
+ </ul>
+ </li>
+ <li><a href="http://www.waikato.ac.nz/news-events/">News &amp; Events</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/news-events/">Section Overview</a></li>
+   <li><a href="http://www.waikato.ac.nz/news-events/media/">Press Releases</a></li>
+   <li><a href="http://www.waikato.ac.nz/news-events/advisories/">Media Advisories</a></li>
+   <li><a href="http://events.waikato.ac.nz/">Events Calendar</a></li>
+   <li><a href="http://www.waikato.ac.nz/staff-profiles/">Find an Expert</a></li>
+ </ul>
+ </li>
+ <li><a href="http://www.waikato.ac.nz/contacts/">Get in Touch</a>
+ <ul>
+   <li><a href="http://www.waikato.ac.nz/contacts/">Section Overview</a></li>
+   <li><a href="http://www.waikato.ac.nz/study/contact.shtml">Study Enquiries</a></li>
+   <li><a href="http://phonebook.waikato.ac.nz/departments.shtml">Department Contacts</a></li>
+   <li><a href="http://phonebook.waikato.ac.nz/">Search for a Staff Member</a></li>
+   <li><a href="http://www.waikato.ac.nz/contacts/locations.shtml">Campuses &amp; Locations</a></li>
+   <li><a href="http://www.waikato.ac.nz/news-events/media/contacts.shtml">Ask our Media Team</a></li>
+               <li><a href='http://www.waikato.ac.nz/contacts/requests.shtml'>Official Information Act requests</a></li>
+   <li><a href="http://www.waikato.ac.nz/contacts/technical-website-contact.shtml">Technical Website Contact</a></li>
+ </ul>
+ </li>
+</ul>  </div>
+ </div></div>
+</nav>
+<!--googleon: snippet-->
+
+<!--googleoff: snippet-->
+<div class='container'>
+<div class='row' id='crumbs'>
+<span class='col-sm-9 col-md-9' style='padding-left: 0.1em;'>
+<a href='http://www.waikato.ac.nz/' style='color:#c00' title='Waikato Home'><img src='https://www.waikato.ac.nz/images/template/home.gif' style='vertical-align:middle;' alt='Home'></a><a href='http://www.waikato.ac.nz/' style='color:#c00'> Waikato Home</a>
+
+ &nbsp;&gt;&nbsp; <a href="http://www.data-mining.co.nz/"> Data-Mining</a>
+  &nbsp;&gt;&nbsp;  <a href="http://www.data-mining.co.nz/data-mining">
+     Home      </a> </span> <!-- / crumbs span -->
+<span id='crumbs-login' class='col-sm-3 col-md-3'>
+<img src="https://www.waikato.ac.nz/images/template/login.gif" alt="" style="vertical-align:middle;"> <a href='http://www.waikato.ac.nz/cgi-bin/landing/index.cgi'>Staff + Students Login</a> |
+ &nbsp;-&nbsp;<a href="https://cookie.waikato.ac.nz/cgi-bin/WCLogout?referrer=http://www.data-mining.co.nz">Logout</a>
+ </span>
+</div>
+</div>
+<!--googleon: snippet-->
+<!--googleoff: snippet-->
+<div class="container page-content">
+<div class="row">
+ <div role="navigation" id="sideMenu" class="col-md-2">
+   <h3>Section Contents</h3>
+   <div class="sectionContents">
+
+     <!--  googleoff: snippet-->
+
+
+
+
+
+
+                             <ul class="primarySection">
+         <li class="NavTitle"><a href="http://www.data-mining.co.nz/data-mining">
+           Home            </a> </li>
+
+         </ul>
+                 <ul class="secondarySection">
+         <li class="NavTitle"><a href="http://www.data-mining.co.nz/research">
+           Commercial Research            </a> </li>
+
+         </ul>
+                 <ul class="secondarySection">
+         <li class="NavTitle"><a href="http://www.data-mining.co.nz/services">
+           Services            </a> </li>
+
+         </ul>
+                 <ul class="secondarySection">
+         <li class="NavTitle"><a href="http://www.data-mining.co.nz/team">
+           Team            </a> </li>
+
+         </ul>
+                 <ul class="secondarySection">
+         <li class="NavTitle"><a href="http://www.data-mining.co.nz/contact-us">
+           Contact Us            </a> </li>
+
+         </ul>
+
+
+
+
+
+
+
+     <!--  googleon: snippet-->
+   </div>
+ </div>
+<!--googleon: snippet-->
+ <div id="content" class="col-sm-9 col-md-8">
+
+<div id="content_div_211379">
+<h1>Data Mining</h1>
+</div>
+
+<div id="new_div_211384">
+  {{ user }}
+  {% if user.is_anonymous %}
+  <a href="{% url 'auth_login' %}">Login</a>
+  <a href="{% url 'registration_register' %}">Register</a>
+  {% else %}
+  <a href="{% url 'auth_logout' %}">logout</a>
+  {% endif %}
+</div>
+{% block display %}
+{% endblock %}
+
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+<div id="new_div_217501">
+<p>The <a href="http://www.waikato.ac.nz/">University of Waikato</a> is the home of several open-source software packages for data mining:&nbsp;</p><ul><li><a href="http://www.cs.waikato.ac.nz/ml/weka/">WEKA</a>&nbsp;- batch learning (preprocessing, classification, regression, clustering)</li><li><a href="http://moa.cms.waikato.ac.nz/">MOA</a>&nbsp;- online/data stream learning (classification, regression)</li><li><a href="https://adams.cms.waikato.ac.nz/">ADAMS</a>&nbsp;- workflow engine (integrates WEKA and MOA)</li></ul><p>These tools are the buildings blocks for quickly conducting data analysis studies or for rapidly building tailored applications for our customers that integrate into their business processes.</p>
+</div>
+
+ </div>
+<!--googleoff: snippet-->
+ <div id='seeAlso' class="col-sm-3 col-md-2" >
+
+<div class="recruitment-widget" id="factiod">
+<p>Choose<strong>Waikato</strong></p>
+<a class="show-mobile-red button-red" href="http://enrol.waikato.ac.nz/" title="Apply Now!">Apply Now!</a>
+<a class="button-mdgrey show-mobile-mdgrey" href="http://www.waikato.ac.nz/study/prospectus.shtml" title="Get Prospectus">Prospectus</a>
+
+</div>
+
+<div class="widget" id="generic-widget">
+<div class="text-widget">
+<img src="http://cms.its.waikato.ac.nz/__data/assets/image/0017/22373/hillary.jpg" alt="hillary">
+
+<h3><a href="http://www.waikato.ac.nz/about/hillary/">Hillary Scholarships</a></h3>
+<p>
+Inspiring excellence, all round development and leadership</p>
+</div>
+
+</div>
+
+<div class="widget" id="widget">
+
+</div>
+
+<div class="widget" id="social-widget">
+<div class="text-widget">
+<h3>Stay Connected</h3>
+
+<p style="padding: 7px;">
+
+
+<a href="http://www.facebook.com/WaikatoUniversity" title="University of Waikato Facebook"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0020/194510/facebook.gif" alt="Facebook" style="padding:2pt; float:left;">
+</a><a href="http://twitter.com/waikato" title="University of Waikato Twitter"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0003/194511/twitter.gif" alt="Twitter" style="padding:2pt;float:left;"></a>
+<a href="http://www.youtube.com/UniversityWaikato" title="University of Waikato Youtube"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0004/194512/youtube.gif" alt="You Tube" style="padding:2pt; float:left;"></a>
+<a href="http://instagram.com/waikatouniversity" title="University of Waikato Instagram"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0004/172624/instagram.gif" alt="Instagram" style="padding:2pt; float:left;"></a>
+<a href="http://www.linkedin.com/edu/school?id=15520" title="University of Waikato LinkedIn"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0007/172627/linkedin.gif" alt="LinkedIn" style="padding:2pt; float:left;"></a>
+<a title="University of Waikato SnapChat"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0008/263438/Snapchat.gif" alt="SnapChat" style="padding:2pt; float:left;"></a>
+<a href="mailto:info@waikato.ac.nz" title="Email the University of Waikato"><img src="http://cms.its.waikato.ac.nz/__data/assets/image/0006/195567/email.gif" alt="Email" style="padding:2pt; float:left;"></a>
+</p>
+<div class="clear"></div>
+
+<p>Visit our <a href="http://www.waikato.ac.nz/news-events/socialmedia.shtml" title="Social Media Directory" class="show-mobile">social directory</a> for more channels.</p>
+
+</div>
+
+</div>
+ </div>
+</div><!--  end row -->
+</div><!--  end container  -->
+
+
+
+<!--  googleoff: snippet-->
+
+<div id='footer'>
+ <div id='trailer'>
+<div class='container'>
+ <div class='row'>
+  <div id='trailer-content'>
+   <p class='contacts'> <a href='http://www.waikato.ac.nz/contacts/'>Get in Touch with Us</a></p>
+   <p class='phone'>In New Zealand <br><span class='number'>0800 WAIKATO</span> </p>
+   <p class='phone'>International <br><span class='number'>+64 7 856 2889</span></p>
+   <a href='http://www.waikato.ac.nz/study/contact.shtml' class='button'>Study Enquiries</a>
+  </div>
+ </div>
+</div>
+</div><div class='container'><div class='row'>
+<div id='footer-nav'>
+<dl>
+<dt><a href='http://www.waikato.ac.nz/about/'>About Waikato</a></dt>
+   <dd><a href='http://www.waikato.ac.nz/about/welcome.shtml'>Welcome to Waikato</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/vc-office/'>Vice-Chancellor's Office</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/alumni.shtml'>Alumni</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/about/schools.shtml'>Faculties/School of Studies</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/hrm/vacancies/current.shtml'>Current Vacancies</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/about/coa.shtml'>Coat of Arms</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/landing/staff.shtml'>Current Staff Login</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/php/siteIndex.php'>Site Index</a></dd>
+<dt><a href='http://www.waikato.ac.nz/news-events/'>News &amp; Events</a></dt>
+   <dd><a href='http://www.waikato.ac.nz/news-events/media/'>Press Releases</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/news-events/advisories/'>Media Advisories</a></dd>
+   <dd><a href='http://events.waikato.ac.nz/'>Events Calendar</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/staff-profiles/'>Find an Expert</a></dd>
+</dl>
+<dl>
+<dt><a href='http://www.waikato.ac.nz/study/'>Study at Waikato</a></dt>
+   <dd><a href='http://papers.waikato.ac.nz/'>Papers</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/subjects/'>Subjects</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/qualifications/'>Qualifications</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/qualifications/pathways.shtml'>Pathways Programmes</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/postgrad/'>Postgraduate Studies</a></dd>
+   <dd><a href='http://timetable.waikato.ac.nz/'>Class Timetable</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/enrol/'>Apply to Enrol</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/international/apply/how-to-apply.shtml'>International Application</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/scholarships/search'>Scholarships</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/dates.shtml'>Important Dates</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/study/contact.shtml'>Study Advice</a></dd>
+   <dd><a href='http://unipr.waikato.ac.nz/careersadvisers/'>Information for Career Advisers</a></dd>
+   <dd class='button'><a href='http://enrol.waikato.ac.nz/'>Apply Now</a></dd>
+</dl>
+<dl>
+<dt><a href='http://www.waikato.ac.nz/students/'>Student Experience</a></dt>
+   <dd><a href='http://www.waikato.ac.nz/students/future-students.shtml'>Future Students</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/new-students/'>New Students</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/international/'>International Students</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/australia.shtml'>Australian Students</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/maori.shtml'>Māori at Waikato</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/pasifika.shtml'>Pasifika at Waikato</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/choose-waikato/hamilton.shtml'>Hamilton: Student City</a></dd>
+   <dd><a href='http://uwt.waikato.ac.nz/'>Tauranga</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/accommodation/'>Accommodation</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/students/student-centre.shtml'>Student Centre</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/library/'>Library</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/landing/student.shtml'>Current Student Login</a></dd>
+   <dd>
+    <div class='socialmediaicons'><span class='share'>Share</span><div class='socialmedia'></div> </div>
+   </dd>
+</dl>
+<dl>
+<dt><a href='http://www.waikato.ac.nz/research/'>Research &amp; Expertise</a></dt>
+   <dd><a href='http://www.waikato.ac.nz/research-enterprise'>Research Support</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/staff-profiles/'>Find Expertise</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/research/publications.shtml'>Publications Databases</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/research/outputs/sustainability.shtml'>Showcase Projects</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/research-enterprise/our-people/contact-us'>Contact Research Support</a></dd>
+</dl>
+<dl>
+<dt><a href='http://www.waikato.ac.nz/contacts/'>Get in Touch</a></dt>
+   <dd><a href='http://www.waikato.ac.nz/study/contact.shtml'>Study Enquiries</a></dd>
+   <dd><a href='http://phonebook.waikato.ac.nz/departments.shtml'>Department Contacts</a></dd>
+   <dd><a href='http://phonebook.waikato.ac.nz/'>Search for a Staff Member</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/contacts/locations.shtml'>Campuses &amp; Locations</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/news-events/media/contacts.shtml'>Ask our Media Team</a></dd>
+   <dd><a href='http://www.waikato.ac.nz/contacts/technical-website-contact.shtml'>Technical Website Contact</a></dd>
+   <dt>Stay Connected</dt>
+   <dd><a href='http://www.waikato.ac.nz/students/choose-waikato/socialmedia.shtml'>Social Media Directory</a></dd>
+   <dd><a href='http://www.youtube.com/user/UniversityWaikato'>Waikato on YouTube</a></dd>
+</dl>
+</div>
+
+<div class='social'>
+   <a href='http://enrol.waikato.ac.nz/' class='button'>Apply Now</a>
+   <div class='socialmediaicons'>
+     <span class='share'>Share</span>
+     <div class='socialmedia'></div>
+   </div>
+</div>
+</div></div>
+ <div class='container'><div class='row'>
+ <p class='utility'>
+ Data Mining - <br>
+ The University of Waikato <span lang='mi'>Te Whare Wānanga o Waikato</span>
+ <a href='http://www.waikato.ac.nz/cgi-bin/contact.cgi?mode=feedback'>Site Feedback & Requests</a>
+ <a href='http://www.waikato.ac.nz/copyright.shtml'>Copyright and Legal Statement</a>
+   </p>
+ </div></div>
+
+ <noscript class='noprint'>
+ <div>
+   <strong>NB: Your browser has JavaScript disabled or does not support JavaScript.</strong>
+   <br>Elements of this website require JavaScript, and will not function unless you enable it or use another browser with JavaScript support.
+ </div>
+</noscript>
+ <script src='https://www.waikato.ac.nz/include/js/jQuery.equalHeights.r0.js'></script>
+<script src='https://www.waikato.ac.nz/include/js/globalnav.ui.r0.js' type='text/javascript'></script>
+<script src='https://www.waikato.ac.nz/include/js/jquery.share.r0.js'></script>
+<script src='https://www.waikato.ac.nz/include/js/jquery.flexslider-min.r0.js'></script>
+<script src='https://www.waikato.ac.nz/include/colorbox/jquery.colorbox-min.1.4.37.js'></script>
+<script src='https://www.waikato.ac.nz/include/js/footerJS.r2.7.js'></script><script src='https://www.waikato.ac.nz/include/js/search-as-you-type.js' type='text/javascript'></script>
+<script type='text/javascript'>
+     searchAsYouType.initialize(document.getElementById('search'), false);
+   </script></div>
+
+<!--  googleon: snippet -->
+
+
+</body>
 </html>

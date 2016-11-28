@@ -7,6 +7,8 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import EmailMessage
 
+from captcha.fields import CaptchaField
+
 fs = FileSystemStorage(location='/jobs/processes')
 
 class UploadFileForm(forms.Form):
@@ -14,9 +16,10 @@ class UploadFileForm(forms.Form):
     title = forms.CharField(max_length=50)
     file = forms.FileField()
     email = EmailMessage('Hello', 'This is a test file', to=[])
-
+'''
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    captcha = CaptchaField()
 
     class Meta:
         model = User
@@ -28,3 +31,4 @@ class UserCreateForm(UserCreationForm):
         if commit:
             user.save()
         return user
+'''

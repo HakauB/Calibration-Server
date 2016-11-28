@@ -32,6 +32,7 @@ urlpatterns = [
     #url('^register/', CreateView.as_view(name = 'register', template_name='registration/registration_form.html', form_class=UserCreationForm, success_url='/')),
     #url('^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^captcha/', include('captcha.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
