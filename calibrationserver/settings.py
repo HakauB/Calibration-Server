@@ -56,10 +56,21 @@ MIDDLEWARE = [
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Email settings
+# TODO: This WILL become outdated when gmail no hosts stmp... find one
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+# TODO: I had to change the Google settings to allow "Less secure apps", so find
+#       out what protocol is "More secure"
+EMAIL_HOST_USER = 'adams.calibration.advice@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ti3Drakgu'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 ROOT_URLCONF = 'calibrationserver.urls'
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
+LOGIN_URL = 'accounts/login/'
 
 TEMPLATES = [
     {
@@ -113,6 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_OPEN = True
 
 
 # Internationalization

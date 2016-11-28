@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 import contacts.views
 
@@ -27,6 +29,9 @@ urlpatterns = [
     url(r'^$', contacts.views.ListContactView.as_view(), name='contacts-list',),
     url(r'^new$', contacts.views.CreateContactView.as_view(), name='contacts-new',),
     url(r'^edit/(?P<pk>\d+)/$', contacts.views.UpdateContactView.as_view(), name='contacts-edit',),
+    #url('^register/', CreateView.as_view(name = 'register', template_name='registration/registration_form.html', form_class=UserCreationForm, success_url='/')),
+    #url('^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
