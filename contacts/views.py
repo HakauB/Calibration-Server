@@ -1,18 +1,18 @@
+import os
+import threading
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
-from .forms import UploadFileForm
-from .models import Contact
-
-# Create your views here.
-
-from contacts.models import Contact
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from django.core.exceptions import PermissionDenied
+from django.core.mail import EmailMessage
+from django.core.files.base import ContentFile
+
+# Create your views here.
+from contacts.forms import UploadFileForm, CreateContactForm
+from contacts.models import Contact
 
 class ContactOwnerMixin(object):
 
@@ -51,16 +51,36 @@ class CreateContactView(LoggedInMixin, ContactOwnerMixin, CreateView):
 
     model = Contact
     template_name = 'edit_contact.html'
-    fields = '__all__'
+    form_class = CreateContactForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.owner = self.request.user
+        obj.save()
+
+        def email_worker():
+            msg = EmailMessage('Submission Received', 'You have submitted a file ' + obj.cal_file.name + '... wait a while', to=[str(obj.owner.email)])
+            msg.send()
+            folder = 'jobs/processes/processing/' + str(obj.owner.email) + '/' + str(obj.id) + '/'
+            f = open(folder + 'calibration.conf', 'w')
+            f.write(str(obj.cal_file.name) + '\n')
+            f.write(str(obj.calibration) + '\n')
+            f.write(str(obj.owner.email) + '\n')
+            f.write(str(obj.comments) + '\n')
+            f.close()
+
+        threading.Thread(target = email_worker).start()
+
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('contacts-list')
-
 
 class UpdateContactView(LoggedInMixin, ContactOwnerMixin, UpdateView):
 
     model = Contact
     template_name = 'edit_contact.html'
+    fields = '__all__'
 
     def get_success_url(self):
         return reverse('contacts-list')
